@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="men_projet.indicateur">
+            <field name="name">Indicateurs</field>
+            <field name="model">men_projet.indicateur</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="intitule"/>
+                    <field name="type"/>
+                    <field name="os_id" invisible="1"/>
+                    <field name="osg_id" invisible="1"/>
+                    <field name="op_id" invisible="1"/>
+                    <field name="responsable"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--<record model="ir.ui.view" id="men_projet.op_indicateur">
+            <field name="name">Indicateur</field>
+            <field name="model">men_projet.indicateur</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group cols="2">
+                        <group>
+                            <field name="intitule"/>
+                            <field name="type"/>
+                            <field name="os_id" invisible="1"/>
+                            <field name="osg_id"/>
+                            <field name="op_id" invisible="1"/>
+                            <field name="responsable"/>
+                            <field name="seuil1"/>
+                            <field name="seuil2"/>
+                        </group>
+                        <group>
+                            <field name="sprint"/>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="delai"/>
+                        </group>
+                    </group>
+                    <group cols="2">
+                        <group>
+                            <field name="coef_eff"/>
+                            <field name="coef_pond"/>
+                            <field name="unite_mesure"/>
+                        </group>
+                        <group>
+                            <field name="val_min"/>
+                            <field name="val_max"/>
+                            <field name="val_init"/>
+                            <field name="val_finale"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="indicateur_parent"/>
+                        <field name="indicateurs_lies" readonly="1"/>
+                        <field name="valeurs_cibles" />
+                        <field name="si" string="Sources d'informations"/>
+                        <field name="programme_id" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>-->
+
+
+        <record model="ir.actions.act_window" id="men_projet.action_indicateur">
+            <field name="name">Indicateur</field>
+            <field name="res_model">men_projet.indicateur</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_men_projet_indicateur" model="ir.sequence">
+            <field name="name">indicateur_sequencer</field>
+            <field name="code">men_projet.indicateur</field>
+            <field name="prefix">In</field>
+            <field name="padding">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="men_projet.osg">
+            <field name="name">Objectifs stratégiques globaux</field>
+            <field name="model">men_projet.osg</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                    <field name="nom"/>
+                    <field name="responsable"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="men_projet.action_osg">
+            <field name="name">Objectif stratégique global</field>
+            <field name="res_model">men_projet.osg</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_men_projet_osg" model="ir.sequence">
+            <field name="name">osg_sequencer</field>
+            <field name="code">men_projet.osg</field>
+        </record>
+
+    </data>
+</odoo>

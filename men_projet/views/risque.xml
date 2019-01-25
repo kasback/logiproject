@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="men_projet.risque">
+            <field name="name">Risques</field>
+            <field name="model">men_projet.risque</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                    <field name="intitule"/>
+                    <field name="source"/>
+                    <field name="echelle"/>
+                    <field name="valeur"/>
+                    <field name="impacte"/>
+                    <field name="gravite"/>
+                    <field name="o_type" invisible="1"/>
+                    <field name="risque_type" invisible="1"/>
+                    <field name="with_survenu" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="men_projet.risque_form">
+            <field name="name">Risque</field>
+            <field name="model">men_projet.risque</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="intitule"/>
+                            <field name="description"/>
+                            <field name="source"/>
+                            <field name="echelle"/>
+                            <field name="valeur"/>
+                            <field name="impacte"/>
+                            <field name="gravite"/>
+                            <field name="criticite"/>
+                            <field name="mesuresPre"/>
+                            <field name="mesuresUrg"/>
+                            <field name="mesuresCorr"/>
+                            <field name="o_type" invisible="1"/>
+                            <field name="with_survenu" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="os_id" invisible="1"/>
+                            <field name="programme_id" invisible="1"/>
+                            <field name="osg_id" invisible="1"/>
+                            <field name="op_id" invisible="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="men_projet.action_risque">
+            <field name="name">Risques</field>
+            <field name="res_model">men_projet.risque</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_men_projet_risque" model="ir.sequence">
+            <field name="name">risque_sequencer</field>
+            <field name="code">men_projet.risque</field>
+            <field name="prefix">Ri</field>
+            <field name="padding">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,107 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="men_projet.os_global">
+            <field name="name">Objectifs stratégiques globaux</field>
+            <field name="model">men_projet.os_global</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                    <field name="nom"/>
+                    <field name="responsable"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="men_projet.os_global_form">
+            <field name="name">Objectif stratégique global</field>
+            <field name="model">men_projet.os_global</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="nom"/>
+                        <field name="responsable"/>
+                        <field name="indicateurs">
+                            <tree>
+                                <field name="intitule"/>
+                                <field name="type"/>
+                                <field name="osg_id" string="Objectif global"/>
+                            </tree>
+                            <form>
+                                <group cols="2">
+                                    <group>
+                                        <field name="intitule"/>
+                                        <field name="type"/>
+                                        <field name="os_id" invisible="1"/>
+                                        <field name="osg_id" invisible="1"/>
+                                        <field name="op_id" invisible="1"/>
+                                        <field name="responsable"/>
+                                        <field name="seuil1"/>
+                                        <field name="seuil2"/>
+                                    </group>
+                                    <group>
+                                        <field name="sprint"/>
+                                        <field name="date_debut"/>
+                                        <field name="date_fin"/>
+                                        <field name="delai"/>
+                                    </group>
+                                </group>
+                                <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
+                                    <group>
+                                        <field name="coef_eff"/>
+                                        <field name="coef_pond"/>
+                                        <field name="unite_mesure"/>
+                                    </group>
+                                    <group>
+                                        <field name="val_min"/>
+                                        <field name="val_max"/>
+                                        <field name="val_init"/>
+                                        <field name="val_finale"/>
+                                    </group>
+                                </group>
+                                <group cols="2" attrs="{'invisible' : [('type', '!=', 'qualitatif')]}">
+                                    <group>
+                                        <field name="norme"/>
+                                        <field name="reference"/>
+                                        <field name="echelle"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="indicateur_parent" invisible="1"/>
+                                    <field name="indicateurs_lies" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="valeurs_cibles">
+                                        <tree editable="bottom">
+                                            <field name="vc"/>
+                                        </tree>
+                                    </field>
+                                    <field name="si" string="Sources d'informations">
+                                        <tree editable="bottom">
+                                            <field name="intitule"/>
+                                            <field name="responsable"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="men_projet.action_os_global">
+            <field name="name">Objectif stratégique global</field>
+            <field name="res_model">men_projet.os_global</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_men_projet_osg" model="ir.sequence">
+            <field name="name">osg_sequencer</field>
+            <field name="code">men_projet.osg</field>
+        </record>
+
+    </data>
+</odoo>

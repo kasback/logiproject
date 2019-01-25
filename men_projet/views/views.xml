@@ -1,0 +1,28 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="men_projet.list">
+      <field name="name">men_projet list</field>
+      <field name="model">men_projet.men_projet</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="men_projet.action_window">
+      <field name="name">men_projet window</field>
+      <field name="res_model">men_projet.men_projet</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Gestion de projets" id="men_projet.menu_root"/>
+    <menuitem name="Programmes" id="men_projet.menu_programmes" parent="men_projet.menu_root"/>
+      <menuitem name="Liste" id="men_projet.menu_programme_list" parent="men_projet.menu_programmes"
+                action="men_projet.action_programme"/>
+    <menuitem name="Os" id="men_projet.menu_os" parent="men_projet.menu_root" action="men_projet.action_os"/>
+    <menuitem name="Risques" id="men_projet.menu_risque" parent="men_projet.menu_root" action="men_projet.action_risque"/>
+    <menuitem name="Indicateurs" id="men_projet.menu_indicateur" parent="men_projet.menu_root" action="men_projet.action_indicateur"/>
+  </data>
+</odoo>
