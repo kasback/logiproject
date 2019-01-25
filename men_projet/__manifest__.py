@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Gestion de Projet",
+    'name': "LogiProject",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
