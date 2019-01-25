@@ -85,8 +85,8 @@ class Mesure(models.Model):
 class Survenue(models.Model):
     _name = "men_projet.survenue"
 
-    survenu = fields.Boolean(default=False)
-    date_survenu = fields.Date()
+    survenu = fields.Boolean(default=False, string="Occurence")
+    date_survenu = fields.Date('Date d\'occurrence')
     risque_id = fields.Many2one('men_projet.risque')
     impacte_reel = fields.Char()
 
