@@ -21,8 +21,5 @@
     <menuitem name="Programmes" id="men_projet.menu_programmes" parent="men_projet.menu_root"/>
       <menuitem name="Liste" id="men_projet.menu_programme_list" parent="men_projet.menu_programmes"
                 action="men_projet.action_programme"/>
-    <menuitem name="Os" id="men_projet.menu_os" parent="men_projet.menu_root" action="men_projet.action_os"/>
-    <menuitem name="Risques" id="men_projet.menu_risque" parent="men_projet.menu_root" action="men_projet.action_risque"/>
-    <menuitem name="Indicateurs" id="men_projet.menu_indicateur" parent="men_projet.menu_root" action="men_projet.action_indicateur"/>
   </data>
 </odoo>
