@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3f47c55-de25-4ce7-9d6a-dd2c9ba96cd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Indicateur.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Indicateur.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Op.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Op.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Os.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Os.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/security/ir.model.access.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/os_global.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/os_global.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b3f47c55-de25-4ce7-9d6a-dd2c9ba96cd8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,11 +10,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Programme.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+            <state relative-caret-position="447">
+              <caret line="166" column="35" lean-forward="true" selection-start-line="166" selection-start-column="35" selection-end-line="166" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -93,7 +86,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/programme.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="885">
@@ -207,8 +200,8 @@
         <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
         <option value="$PROJECT_DIR$/models/Indicateur.py" />
         <option value="$PROJECT_DIR$/models/Risque.py" />
-        <option value="$PROJECT_DIR$/models/Programme.py" />
         <option value="$PROJECT_DIR$/views/programme.xml" />
+        <option value="$PROJECT_DIR$/models/Programme.py" />
       </list>
     </option>
   </component>
@@ -324,7 +317,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32876712" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32970297" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49921012" weight="0.3188119" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49921012" visible="true" weight="0.3188119" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.4009901" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -511,13 +504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Programme.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/programme.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
@@ -546,6 +532,13 @@
             <element signature="n#record#4;n#odoo#0;n#!!top" />
             <element signature="n#record#5;n#odoo#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Programme.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="166" column="35" lean-forward="true" selection-start-line="166" selection-start-column="35" selection-end-line="166" selection-end-column="35" />
         </state>
       </provider>
     </entry>
