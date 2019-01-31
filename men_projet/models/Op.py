@@ -6,14 +6,14 @@ class Op(models.Model):
     _rec_name = 'nom'
 
     sequence = fields.Char('Sequence', readonly=True)
-    nom = fields.Char('Nom')
+    nom = fields.Char('Intitulé')
     responsable = fields.Many2one('res.partner')
-    programme_id = fields.Many2one('men_projet.programme')
-    os_id = fields.Many2one('men_projet.os')
+    programme_id = fields.Many2one('men_projet.programme', string="Intitulé du programme")
+    os_id = fields.Many2one('men_projet.os', string="Intitulé de l'objectif stratégique")
     programme_id_value = fields.Integer(compute="_get_programme_id")
     risques = fields.One2many('men_projet.risque', 'op_id')
     indicateurs = fields.One2many('men_projet.indicateur', 'op_id')
-    indicateur_efficacite = fields.Float('Indicateur d\'éfficacité')
+    indicateur_efficacite = fields.Float('Taux d\'éfficacité')
     description = fields.Text()
 
     # fiche projet
@@ -30,6 +30,7 @@ class Op(models.Model):
     directeur_projet = fields.Many2one('men_projet.ressource')
     comites = fields.Many2many('men_projet.staff')
     equipe_operation = fields.Many2many('men_projet.ressource', string="Equipe opérationnelle")
+    autres_participants = fields.Many2many('men_projet.autre_ressource', string="Autres Participants")
 
     @api.onchange('os_id')
     def _get_programme_id(self):
@@ -52,6 +53,21 @@ class Op(models.Model):
 
 class Ressource(models.Model):
     _name = "men_projet.ressource"
+    _rec_name = 'nom'
+
+    nom = fields.Char('Nom')
+    tel = fields.Char('Téléphone')
+    email = fields.Char('Email')
+    profession = fields.Char('Profession')
+    profil = fields.Char('Profil')
+    diplome = fields.Char('Dîplome')
+    p_o = fields.Char('Poste Occupé')
+    nbr_exp = fields.Integer('Nombre d\'années d\'éxpérience')
+    comp_cle = fields.Char('Compétences Clefs')
+
+
+class AutreRessource(models.Model):
+    _name = "men_projet.autre_ressource"
     _rec_name = 'nom'
 
     nom = fields.Char('Nom')

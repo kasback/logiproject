@@ -5,6 +5,7 @@
 "access_men_projet_op","men_projet.op","model_men_projet_op","","1","1","1	","1"
 "access_men_projet_risque","men_projet.risque","model_men_projet_risque","","1","1","1	","1"
 "access_men_projet_mesure","men_projet.mesure","model_men_projet_mesure","","1","1","1	","1"
+"access_men_projet_mesure_type","men_projet.mesure_type","model_men_projet_mesure_type","","1","1","1	","1"
 "access_men_projet_indicateur","men_projet.indicateur","model_men_projet_indicateur","","1","1","1	","1"
 "access_men_projet_si","men_projet.si","model_men_projet_si","","1","1","1	","1"
 "access_men_projet_vc","men_projet.vc","model_men_projet_vc","","1","1","1	","1"
@@ -13,6 +14,10 @@
 "access_men_projet_in_ref","men_projet.in_ref","model_men_projet_in_ref","","1","1","1	","1"
 "access_men_projet_os_global","men_projet.os_global","model_men_projet_os_global","","1","1","1	","1"
 "access_men_projet_ressource","men_projet.ressource","model_men_projet_ressource","","1","1","1	","1"
+"access_men_projet_autre_ressource","men_projet.autre_ressource","model_men_projet_autre_ressource","","1","1","1	","1"
 "access_men_projet_pp","men_projet.pp","model_men_projet_pp","","1","1","1	","1"
 "access_men_projet_staff","men_projet.staff","model_men_projet_staff","","1","1","1	","1"
 "access_men_projet_projet_type","men_projet.projet_type","model_men_projet_projet_type","","1","1","1	","1"
+"access_men_projet_many2one_o","men_projet.many2one_o","model_men_projet_many2one_o","","1","1","1	","1"
+"access_men_projet_risque_non_planif","men_projet.risque_non_planif","model_men_projet_risque_non_planif","","1","1","1	","1"
+

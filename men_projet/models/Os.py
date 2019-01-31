@@ -13,7 +13,7 @@ class Os(models.Model):
     op_ids = fields.One2many('men_projet.op', 'os_id', string="Objectifs Projets")
     risques = fields.One2many('men_projet.risque', 'os_id')
     indicateurs = fields.One2many('men_projet.indicateur', 'os_id')
-    indicateur_efficacite = fields.Float('Indicateur d\'éfficacité')
+    indicateur_efficacite = fields.Float('Taux d\'éfficacité')
     description = fields.Text()
 
     @api.model

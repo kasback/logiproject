@@ -34,9 +34,9 @@ class Indicateur(models.Model):
     val_init = fields.Float('Valeur initiale')
     val_finale = fields.Float('Valeur finale')
     unite_mesure = fields.Many2one('uom.uom', 'Unité de mesure')
-    os_id = fields.Many2one('men_projet.os', domain=lambda self: self._set_objectifs_domain())
-    osg_id = fields.Many2one('men_projet.os_global')
-    op_id = fields.Many2one('men_projet.op', domain=lambda self: self._set_objectifs_domain())
+    os_id = fields.Many2one('men_projet.os', string="Objectif Stratégique", domain=lambda self: self._set_objectifs_domain())
+    osg_id = fields.Many2one('men_projet.os_global', string="Objectif Global")
+    op_id = fields.Many2one('men_projet.op', string="Objectif Projet", domain=lambda self: self._set_objectifs_domain())
     o_type = fields.Char()
     indicateur_parent = fields.Many2one('men_projet.indicateur', domain=lambda self: self._set_indicateur_parent_domain())
     indicateurs_lies = fields.One2many('men_projet.indicateur', 'indicateur_parent')
@@ -95,6 +95,7 @@ class SourceInformation(models.Model):
     _rec_name = "intitule"
 
     intitule = fields.Char('Intitulé')
+    description = fields.Text('Description')
     responsable = fields.Many2one('res.partner')
     indicateur_id = fields.Many2one('men_projet.indicateur')
 
@@ -103,14 +104,16 @@ class ValeursCible(models.Model):
     _name = "men_projet.vc"
 
     indicateur_id = fields.Many2one('men_projet.indicateur')
+    seuil1 = fields.Float(related='indicateur_id.seuil1')
+    seuil2 = fields.Float(related='indicateur_id.seuil2')
     vc = fields.Float('Valeur cible')
     vr = fields.Float('Valeur réelle')
+    date_cible = fields.Date('Date cible')
     ecart = fields.Char('Écart', compute="_calc_ecart")
     t_r = fields.Char('Taux de réalisation', compute="_calc_taux_realisation")
-    date_cible = fields.Date('Date cible')
     date_saisie = fields.Date('Date réelle')
     analyse = fields.Text()
-    ajustement = fields.Text()
+    ajustement = fields.Text('Decision d\'ajustement')
 
     @api.depends('vr')
     def _calc_ecart(self):
@@ -123,6 +126,7 @@ class ValeursCible(models.Model):
         for record in self:
             if record.ecart:
                 record.t_r = str(round((100 - ((float(record.ecart) / float(record.vc)) * 100)), 2)) + '%'
+
 
 
 class InRef(models.Model):

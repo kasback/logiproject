@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3f47c55-de25-4ce7-9d6a-dd2c9ba96cd8" name="Default Changelist" comment="" />
+    <list default="true" id="b3f47c55-de25-4ce7-9d6a-dd2c9ba96cd8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Indicateur.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Indicateur.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Op.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Op.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Os.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Os.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/os_global.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/os_global.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,40 +20,105 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Programme.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="72" column="82" selection-start-line="72" selection-start-column="82" selection-end-line="72" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/views.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="195">
+              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__manifest__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/os_global.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="111" column="17" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+              <folding>
+                <element signature="n#field#4;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Op.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Indicateur.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2178">
+              <caret line="121" column="63" selection-start-line="121" selection-start-column="63" selection-end-line="121" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Os.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/risque.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Risque.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="843">
+              <caret line="101" column="32" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/programme.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4040">
-              <caret line="23" column="74" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
+            <state relative-caret-position="885">
+              <caret line="355" column="81" selection-start-line="355" selection-start-column="81" selection-end-line="355" selection-end-column="81" />
               <folding>
                 <element signature="n#header#1;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#7;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#8;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
                 <element signature="n#field#9;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
                 <element signature="n#field#10;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
                 <element signature="n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#page#1;n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
                 <element signature="n#page#2;n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
                 <element signature="n#header#2;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-                <element signature="n#field#2;n#record#0;n#odoo#0;n#!!top" />
-                <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#2;n#group#2;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#0;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#notebook#0;n#form#0;n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+                <element signature="n#record#0;n#odoo#0;n#!!top" />
                 <element signature="n#record#1;n#odoo#0;n#!!top" />
-                <element signature="n#field#8;n#group#0;n#form#0;n#field#2;n#record#1;n#odoo#0;n#!!top" />
                 <element signature="n#record#2;n#odoo#0;n#!!top" />
-                <element signature="n#field#7;n#group#0;n#form#0;n#field#2;n#record#2;n#odoo#0;n#!!top" />
-                <element signature="n#notebook#0;n#form#0;n#field#2;n#record#2;n#odoo#0;n#!!top" />
+                <element signature="n#record#3;n#odoo#0;n#!!top" />
                 <element signature="n#record#4;n#odoo#0;n#!!top" />
                 <element signature="n#record#5;n#odoo#0;n#!!top" />
               </folding>
@@ -55,64 +127,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__manifest__.py">
+        <entry file="file://$PROJECT_DIR$/views/views.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Op.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Indicateur.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/risque.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="36" column="53" lean-forward="true" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Os.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Risque.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="90" column="32" lean-forward="true" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
+            <state relative-caret-position="414">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -128,28 +146,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>op</find>
       <find>sub_status</find>
       <find>suivi_status</find>
       <find>suivi_objectif</find>
-      <find>programme_id</find>
       <find>os_globa</find>
       <find>osg_id</find>
       <find>programme_id_value</find>
       <find>impacte</find>
-      <find>risque_type</find>
       <find>statusbar</find>
       <find>evaluation</find>
       <find>osg</find>
       <find>norme</find>
       <find>risques_os</find>
-      <find>suivi</find>
       <find>os</find>
       <find>os_global</find>
       <find>with_survenu</find>
-      <find>indicateurs</find>
       <find>readonly</find>
       <find>risques_suivi</find>
+      <find>os_global_suivi</find>
+      <find>Opbjectif</find>
+      <find>suivi_risques</find>
+      <find>programme_id</find>
+      <find>description</find>
+      <find>impact</find>
+      <find>suivi</find>
+      <find>indicateurs</find>
+      <find>vr</find>
+      <find>risques_non_planif</find>
+      <find>risque_type</find>
+      <find>valeurs_cibles</find>
+      <find>a</find>
     </findStrings>
     <replaceStrings>
       <replace>risque</replace>
@@ -169,24 +195,24 @@
         <option value="$PROJECT_DIR$/models/models.py" />
         <option value="$PROJECT_DIR$/views/op.xml" />
         <option value="$PROJECT_DIR$/views/osg.xml" />
-        <option value="$PROJECT_DIR$/views/os_global.xml" />
         <option value="$PROJECT_DIR$/models/Osg.py" />
         <option value="$PROJECT_DIR$/views/indicateur.xml" />
         <option value="$PROJECT_DIR$/models/__init__.py" />
-        <option value="$PROJECT_DIR$/models/Indicateur.py" />
         <option value="$PROJECT_DIR$/views/risque.xml" />
-        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
-        <option value="$PROJECT_DIR$/models/Os.py" />
-        <option value="$PROJECT_DIR$/models/Op.py" />
-        <option value="$PROJECT_DIR$/models/Programme.py" />
-        <option value="$PROJECT_DIR$/models/Risque.py" />
-        <option value="$PROJECT_DIR$/views/programme.xml" />
         <option value="$PROJECT_DIR$/__manifest__.py" />
         <option value="$PROJECT_DIR$/views/views.xml" />
+        <option value="$PROJECT_DIR$/views/os_global.xml" />
+        <option value="$PROJECT_DIR$/models/Op.py" />
+        <option value="$PROJECT_DIR$/models/Os.py" />
+        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
+        <option value="$PROJECT_DIR$/models/Indicateur.py" />
+        <option value="$PROJECT_DIR$/models/Risque.py" />
+        <option value="$PROJECT_DIR$/models/Programme.py" />
+        <option value="$PROJECT_DIR$/views/programme.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -208,31 +234,12 @@
             <path>
               <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
               <item name="men_projet" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="men_projet" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="men_projet" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="men_projet" type="462c0819:PsiDirectoryNode" />
               <item name="security" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
               <item name="men_projet" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="men_projet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -244,7 +251,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -304,22 +311,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1302621" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07846235" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.45479453" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.4970297" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32876712" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32970297" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49960285" weight="0.32328767" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50039715" side_tool="true" weight="0.32465753" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49921012" weight="0.3188119" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.4009901" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -353,13 +359,6 @@
     <entry file="file://$PROJECT_DIR$/views/templates.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../odoo/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="2387" selection-start-line="2387" selection-end-line="2387" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/james.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -380,13 +379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/os_global.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -412,25 +404,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" rowLines="3">
-          <column index="0" width="100" />
-          <column index="1" width="100" />
-          <column index="2" width="100" />
-          <column index="3" width="100" />
-          <column index="4" width="100" />
-          <column index="5" width="100" />
-          <column index="6" width="100" />
-          <column index="7" width="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../odoo/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -445,90 +418,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Op.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Indicateur.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/risque.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="36" column="53" lean-forward="true" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Risque.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="90" column="32" lean-forward="true" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Os.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Programme.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="72" column="82" selection-start-line="72" selection-start-column="82" selection-end-line="72" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/programme.xml">
+    <entry file="file://$PROJECT_DIR$/../../odoo/fields.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4040">
-          <caret line="23" column="74" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
-          <folding>
-            <element signature="n#header#1;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#field#9;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#field#10;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#page#2;n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#header#2;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
-            <element signature="n#field#2;n#record#0;n#odoo#0;n#!!top" />
-            <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#0;n#odoo#0;n#!!top" />
-            <element signature="n#record#1;n#odoo#0;n#!!top" />
-            <element signature="n#field#8;n#group#0;n#form#0;n#field#2;n#record#1;n#odoo#0;n#!!top" />
-            <element signature="n#record#2;n#odoo#0;n#!!top" />
-            <element signature="n#field#7;n#group#0;n#form#0;n#field#2;n#record#2;n#odoo#0;n#!!top" />
-            <element signature="n#notebook#0;n#form#0;n#field#2;n#record#2;n#odoo#0;n#!!top" />
-            <element signature="n#record#4;n#odoo#0;n#!!top" />
-            <element signature="n#record#5;n#odoo#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="230">
+          <caret line="2066" column="8" selection-start-line="2066" selection-start-column="8" selection-end-line="2066" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__manifest__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        <state relative-caret-position="378">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/os_global.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="111" column="17" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+          <folding>
+            <element signature="n#field#4;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Indicateur.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="121" column="63" selection-start-line="121" selection-start-column="63" selection-end-line="121" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/views.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="414">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/risque.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Risque.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="843">
+          <caret line="101" column="32" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Programme.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/programme.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="355" column="81" selection-start-line="355" selection-start-column="81" selection-end-line="355" selection-end-column="81" />
+          <folding>
+            <element signature="n#header#1;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#7;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#8;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#9;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#10;n#group#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#page#1;n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#page#2;n#notebook#0;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#header#2;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#2;n#group#2;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#0;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#field#6;n#group#0;n#form#0;n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#notebook#0;n#form#0;n#field#2;n#group#3;n#form#0;n#field#2;n#record#1;n#data#0;n#odoo#0;n#!!top" />
+            <element signature="n#record#0;n#odoo#0;n#!!top" />
+            <element signature="n#record#1;n#odoo#0;n#!!top" />
+            <element signature="n#record#2;n#odoo#0;n#!!top" />
+            <element signature="n#record#3;n#odoo#0;n#!!top" />
+            <element signature="n#record#4;n#odoo#0;n#!!top" />
+            <element signature="n#record#5;n#odoo#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -14,9 +14,12 @@ class Risque(models.Model):
     impacte = fields.Text('Description d\'impacte')
     gravite = fields.Integer('Echelle gravité')
     criticite = fields.Integer(compute="_calc_criticite", string='Criticité')
-    mesuresPre = fields.Many2one('men_projet.mesure', domain="[('type', '=', 'prev')]", string='Mesures Préventives')
-    mesuresUrg = fields.Many2one('men_projet.mesure', domain="[('type', '=', 'urg')]", string='Mesures Urgentes')
-    mesuresCorr = fields.Many2one('men_projet.mesure', domain="[('type', '=', 'corr')]", string='Mesures Corréctives')
+    mesuresPre = fields.One2many('men_projet.mesure', 'risque_id', string='Mesures Préventives',
+                                 domain=[('m_type', '=', 'mesure_preventive')])
+    mesuresUrg = fields.One2many('men_projet.mesure', 'risque_id',  string='Mesures Urgentes',
+                                 domain=[('m_type', '=', 'mesure_urgente')])
+    mesuresCorr = fields.One2many('men_projet.mesure', 'risque_id', string='Mesures Corréctives',
+                                  domain=[('m_type', '=', 'mesure_corrective')])
     programme_id = fields.Many2one('men_projet.programme')
     os_id = fields.Many2one('men_projet.os', 'Objectif stratégique')
     osg_id = fields.Many2one('men_projet.os_global', 'Objectif global')
@@ -75,11 +78,24 @@ class Mesure(models.Model):
     _rec_name = 'intitule'
 
     intitule = fields.Char('Intitulé')
-    type = fields.Selection([
-        ('prev', 'Mesures Préventives'),
-        ('urg', 'Mesures Urgentes'),
-        ('corr', 'Mesures Corréctives'),
-    ])
+    description = fields.Text('Description')
+    type = fields.Many2one('men_projet.mesure_type')
+    risque_id = fields.Many2one('men_projet.risque')
+    risque_nonplanif_id = fields.Many2one('men_projet.risque_non_planifie')
+    m_type = fields.Char(default=lambda self: self._context.get('m_type'))
+
+    @api.model
+    def create(self,vals):
+        res = super(Mesure, self).create(vals)
+        return res
+
+
+class MesureType(models.Model):
+    _name = "men_projet.mesure_type"
+    _rec_name = 'intitule'
+
+    intitule = fields.Char('Intitulé')
+    description = fields.Text('Description')
 
 
 class Survenue(models.Model):
@@ -88,12 +104,30 @@ class Survenue(models.Model):
     survenu = fields.Boolean(default=False, string="Occurence")
     date_survenu = fields.Date('Date d\'occurrence')
     risque_id = fields.Many2one('men_projet.risque')
-    impacte_reel = fields.Char()
+    impacte_reel = fields.Text('Impact réél')
 
 
 class SourcesRisque(models.Model):
     _name = "men_projet.sources_risque"
     _rec_name = "intitule"
 
-    intitule = fields.Char()
+    intitule = fields.Char('Intitulé')
+    description = fields.Text('Description')
+
+
+class RisqueNonPlanifie(models.Model):
+    _name = "men_projet.risque_non_planif"
+    _rec_name = 'intitule'
+
+    intitule = fields.Char('Intitulé')
+    description = fields.Text('Description')
+    source = fields.Many2one('men_projet.sources_risque')
+    mesuresUrg = fields.One2many('men_projet.mesure', 'risque_nonplanif_id', string='Mesures Urgentes',
+                                 domain=[('m_type', '=', 'mesure_urgente')])
+    mesuresCorr = fields.One2many('men_projet.mesure', 'risque_nonplanif_id', string='Mesures Corréctives',
+                                  domain=[('m_type', '=', 'mesure_corrective')])
+    programme_id = fields.Many2one('men_projet.programme')
+    date_survenu = fields.Date('Date d\'occurrence')
+
+
 
