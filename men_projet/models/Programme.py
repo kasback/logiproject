@@ -11,12 +11,6 @@ class Programme(models.Model):
     sequence = fields.Char('Sequence', readonly=True)
     nom = fields.Char('Intitulé', required="True")
     responsable = fields.Many2one('res.partner')
-    os = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
-    os_none_edit = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
-    os_suivi = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
-    op = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
-    op_none_edit = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
-    op_suivi = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
     description = fields.Text('Description')
     status = fields.Selection([
         ('planification', 'Planification'),
@@ -45,11 +39,6 @@ class Programme(models.Model):
         ('op', 'Objectifs projets')
     ], default='all', string="Filtrer par objectif")
 
-    res = [
-        ('osg', 'Objectif global'),
-        ('os', 'Objectifs stratégiques'),
-        ('op', 'Objectifs projets')
-    ]
 
     @api.multi
     def _set_risques_domain(self):
@@ -68,7 +57,6 @@ class Programme(models.Model):
 
     @api.onchange('objectif_type')
     def _filter_indicateur(self):
-        print('inside onchange')
         programme_id = self._origin.id
         if programme_id:
             if self.objectif_type is not False:
@@ -106,6 +94,23 @@ class Programme(models.Model):
     indicateurs_suivi = fields.One2many('men_projet.indicateur', 'programme_id', store=True)
     os_global = fields.Many2one('men_projet.os_global')
     os_global_suivi = fields.Many2one('men_projet.os_global')
+    os = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
+    os_none_edit = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
+    os_suivi = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
+    op = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
+    op_none_edit = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
+    op_suivi = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
+    os_m2o = fields.Many2one(related='op.os_id')
+
+    @api.onchange('os_m2o')
+    def _filter_ops(self):
+        for programme in self:
+            print(programme.id)
+            if programme.os_m2o.id is not False:
+                programme.op = self.env['men_projet.op'].search([('os_id', '=', programme.os_m2o.id)])
+            else:
+                programme.op = self.env['men_projet.op'].search([('programme_id', '=', self._origin.id)])
+
 
     @api.one
     def objectifs_strategiques_btn(self):
@@ -153,7 +158,6 @@ class Programme(models.Model):
 
     @api.multi
     def write(self, vals):
-        print(self._context)
         vals['objectif_type'] = 'all'
         if 'indicateurs_suivi' in vals:
             indicateurs = vals['indicateurs_suivi']
@@ -169,14 +173,34 @@ class Programme(models.Model):
             for risque in risques:
                 if risque[2] and risque[2] is not False and type(risque[2]) == dict:
                     survenues = risque[2]['survenues']
+                    print(survenues)
                     for survenu in survenues:
                         if survenu[2] is not False:
-                            # print('survenu[2] : ' + str(survenu[2]))
-                            # print('risque id : ' + str(risque[1]) + ' ses survenues : ' + str(survenu[2]))
-                            self.env['men_projet.survenue'].search([('id', '=', risque[1])]).write(survenu[2])
+                            self.env['men_projet.risque'].search([('id', '=', risque[1])]).write({
+                                'survenues': survenues
+                            })
+
+        if 'op' in vals:
+            ops = vals['op']
+            # print(ops)
+            for op in ops:
+                if op[2] and op[2] is not False and type(op[2]) == dict:
+                    elems_modified = op[2]
+                    # print(elems_modified)
+                    for key, value in elems_modified.items():
+                        if key != 'indicateurs':
+                            self.env['men_projet.op'].search([('id', '=', op[1])]).write({
+                                key: value
+                            })
+                        else:
+                            self.env['men_projet.op'].search([('id', '=', op[1])]).write({
+                                'indicateurs': elems_modified['indicateurs']
+                            })
+
 
         vals['indicateurs_suivi'] = self.env['men_projet.indicateur'].search([('programme_id', '=', self.id)])
         vals['risques_suivi'] = self.env['men_projet.risque'].search([('programme_id', '=', self.id)])
+        vals['op'] = self.env['men_projet.op'].search([('programme_id', '=', self.id)])
 
         return super(Programme, self).write(vals)
 
@@ -188,7 +212,7 @@ class OsGlobal(models.Model):
     sequence = fields.Char('Sequence', readonly=True)
     nom = fields.Char('Intitulé')
     responsable = fields.Many2one('res.partner')
-    os = fields.One2many('men_projet.os', 'osg_id')
+    os = fields.One2many('men_projet.os', 'osg_id', string="Objéctifs stratégiques")
     risques = fields.One2many('men_projet.risque', 'osg_id')
     indicateurs = fields.One2many('men_projet.indicateur', 'osg_id')
     indicateur_efficacite = fields.Float('Taux d\'éfficacité')
@@ -200,3 +224,4 @@ class OsGlobal(models.Model):
         seq = self.env['ir.sequence'].next_by_code('men_projet.osg') or '/'
         record['sequence'] = seq
         return record
+
