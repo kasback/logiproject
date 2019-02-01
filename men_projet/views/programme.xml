@@ -39,13 +39,16 @@
                         <field name="nom" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field name="responsable" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field name="id" invisible="1"/>
-                        <field name="description"/>
+                        <field name="description" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field string="Objectif global" name="os_global"
-                               context="{'form_view_ref': 'men_projet.osg_form_m2o', 'programme_id':id, 'planif_status': planif_status}"/>
+                               context="{'form_view_ref': 'men_projet.osg_form_m2o_wo_risques', 'programme_id':id, 'planif_status': planif_status}"
+                                attrs="{'invisible': [('planif_status', 'in', ['risques_projets','risques_strategiques','risques_globaux'])],
+                                'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field string="Objectifs stratégiques" name="os_none_edit"
                                context="{'form_view_ref':'men_projet.os_form_o2m', 'programme_id':id}"
-                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','risques_projets','risques_strategiques','risques_globaux'])]}">
-                            <tree create="false">
+                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','risques_projets','risques_strategiques','risques_globaux'])],
+                               'readonly':[('planif_status','!=','objectifs_strategiques')]}">
+                            <tree create="false" delete="false">
                                 <field name="sequence"/>
                                 <field name="nom"/>
                                 <field name="responsable"/>
@@ -62,7 +65,8 @@
                         </field>
                         <field string="Risques projets" name="risques_op"
                                context="{'form_view_ref': 'men_projet.risque_form_o2m','objectif': planif_status, 'status': status}"
-                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','objectifs_projets','risques_projets'])]}">
+                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','objectifs_projets','risques_projets'])],
+                               'readonly':[('planif_status','!=','risques_projets')]}">
                             <tree create="false">
                                 <field name="sequence"/>
                                 <field name="intitule"/>
@@ -78,7 +82,8 @@
                         </field>
                         <field string="Risques Stratégiques" name="risques_os"
                                context="{'form_view_ref': 'men_projet.risque_form_o2m','objectif': planif_status, 'status': status}"
-                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','objectifs_projets','risques_projets','risques_strategiques'])]}">
+                               attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','objectifs_projets','risques_projets','risques_strategiques'])],
+                               'readonly':[('planif_status','!=','risques_strategiques')]}">
                             <tree create="false">
                                 <field name="sequence"/>
                                 <field name="intitule"/>
@@ -124,15 +129,18 @@
                         </page>
                         <page string="Objectifs projets"
                               attrs="{'invisible':[('planif_status','!=','objectifs_projets')]}">
-                            <field string="Objectifs projets" name="op"
-                                   context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op'}">
-                                <tree>
-                                    <field name="sequence"/>
-                                    <field name="nom"/>
-                                    <field name="responsable"/>
-                                    <field name="os_id"/>
-                                </tree>
-                            </field>
+                            <group>
+                                <field name="os_m2o" readonly="0" widget="selection" domain="[('programme_id', '=', id)]"/>
+                                <field string="Objectifs projets" name="op"
+                                       context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op'}">
+                                    <tree>
+                                        <field name="sequence"/>
+                                        <field name="nom"/>
+                                        <field name="responsable"/>
+                                        <field name="os_id"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
                         <page string="Risques"
                               attrs="{'invisible': [('planif_status', 'not in', ['risques_globaux','risques_strategiques','risques_projets'])]}">
@@ -273,7 +281,7 @@
                                 </group>
                                 <group>
                                     <field name="valeurs_cibles">
-                                        <tree decoration-success="ecart&lt;seuil1" decoration-warning="ecart&gt;seuil2">
+                                        <tree>
                                             <field name="date_cible" readonly="1"/>
                                             <field name="vc" readonly="1"/>
                                             <field name="date_saisie"/>
@@ -284,6 +292,10 @@
                                             <field name="ajustement"/>
                                             <field name="seuil1" readonly="1" invisible="1"/>
                                             <field name="seuil2" readonly="1" invisible="1"/>
+                                            <field name="set_color" />
+                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'red')]}" style="color:#dc3545;"/>
+                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'green')]}" style="color:green;"/>
+                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'yellow')]}" style="color:yellow;"/>
                                         </tree>
                                         <form>
                                             <group>
@@ -422,6 +434,7 @@
                     </group>
                     <group attrs="{'invisible':['|' ,('status','!=','suivi'), ('suivi_status','!=','suivi_objectifs')]}">
                         <field string="Objectif global" name="os_global_suivi"
+                               context="{'form_view_ref': 'men_projet.osg_form_m2o', 'programme_id':id, 'planif_status': planif_status}"
                                attrs="{'invisible':[('status','!=','suivi')]}" readonly="1"
                         />
                         <field string="Objectifs stratégiques" name="os_suivi" readonly="1"
@@ -528,12 +541,11 @@
                             <form>
                                 <group>
                                     <field name="sequence"/>
-                                    <field name="programme_id" invisible="1"/>
+                                    <field name="programme_id" invisible="0"/>
                                     <field name="nom"/>
                                     <field name="responsable"/>
-                                    <field name="programme_id_value" invisible="1"/>
-                                    <field name="os_id" string="Objéctif Stratégique"
-                                           domain="[('programme_id', '=', programme_id_value)]" required="1"/>
+                                    <field name="os_id" string="Objéctif Stratégique" required="1"
+                                           domain="[('programme_id', '=', programme_id)]"/>
                                     <field name="indicateurs">
                                         <form>
                                             <group cols="2">
@@ -679,12 +691,6 @@
                                     <field name="intitule"/>
                                     <field name="description"/>
                                     <field name="type"/>
-                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
-                                           readonly="1"/>
                                     <field name="responsable"/>
                                     <field name="seuil1"/>
                                     <field name="seuil2"/>
@@ -694,6 +700,12 @@
                                     <field name="date_debut"/>
                                     <field name="date_fin"/>
                                     <field name="delai"/>
+                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
+                                           readonly="1"/>
                                 </group>
                             </group>
                             <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
@@ -750,6 +762,100 @@
             </form>
         </field>
     </record>
+    <record model="ir.ui.view" id="men_projet.osg_form_m2o_wo_risques">
+        <field name="name">Objectif stratégique global</field>
+        <field name="model">men_projet.os_global</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sequence"/>
+                    <field name="nom"/>
+                    <field name="description"/>
+                    <field name="responsable"/>
+                    <field name="indicateurs">
+                        <tree>
+                            <field name="sequence"/>
+                            <field name="intitule"/>
+                            <field name="type"/>
+                            <field name="osg_id" string="Objectif global"/>
+                        </tree>
+                        <form>
+                            <group cols="2">
+                                <group>
+                                    <field name="sequence"/>
+                                    <field name="intitule"/>
+                                    <field name="description"/>
+                                    <field name="type"/>
+                                    <field name="responsable"/>
+                                    <field name="seuil1"/>
+                                    <field name="seuil2"/>
+                                </group>
+                                <group>
+                                    <field name="sprint"/>
+                                    <field name="date_debut"/>
+                                    <field name="date_fin"/>
+                                    <field name="delai"/>
+                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
+                                           readonly="1"/>
+                                </group>
+                            </group>
+                            <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
+                                <group>
+                                    <field name="coef_eff"/>
+                                    <field name="coef_pond"/>
+                                    <field name="unite_mesure"/>
+                                </group>
+                                <group>
+                                    <field name="val_min"/>
+                                    <field name="val_max"/>
+                                    <field name="val_init"/>
+                                    <field name="val_finale"/>
+                                </group>
+                            </group>
+                            <group cols="2" attrs="{'invisible' : [('type', '!=', 'qualitatif')]}">
+                                <group>
+                                    <field name="norme"/>
+                                    <field name="reference"/>
+                                    <field name="echelle"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="indicateur_parent" invisible="1"/>
+                                <field name="indicateurs_lies" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="valeurs_cibles">
+                                    <tree editable="bottom">
+                                        <field name="vc"/>
+                                        <field name="date_cible" string="Date Cible"/>
+                                    </tree>
+                                </field>
+                                <field name="si" string="Sources d'informations">
+                                    <tree>
+                                        <field name="intitule"/>
+                                        <field name="description"/>
+                                        <field name="responsable"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="intitule"/>
+                                            <field name="description"/>
+                                            <field name="responsable"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </form>
+                    </field>
+                    <field name="os"/>
+                </group>
+            </form>
+        </field>
+    </record>
     <record model="ir.ui.view" id="men_projet.os_form_o2m">
         <field name="name">Objectif stratégique</field>
         <field name="model">men_projet.os</field>
@@ -778,12 +884,6 @@
                                     <field name="intitule"/>
                                     <field name="description"/>
                                     <field name="type"/>
-                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
-                                           readonly="1"/>
                                     <field name="responsable"/>
                                     <field name="seuil1"/>
                                     <field name="seuil2"/>
@@ -793,6 +893,12 @@
                                     <field name="date_debut"/>
                                     <field name="date_fin"/>
                                     <field name="delai"/>
+                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
+                                           readonly="1"/>
                                 </group>
                             </group>
                             <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
@@ -857,9 +963,7 @@
                     <field name="programme_id" invisible="1"/>
                     <field name="nom"/>
                     <field name="responsable"/>
-                    <field name="programme_id_value" invisible="1"/>
-                    <field name="os_id"
-                           domain="[('programme_id', '=', programme_id_value)]" required="1"/>
+                    <field name="os_id" required="1" readonly="0"/>
                     <field name="indicateurs">
                         <form>
                             <group cols="2">
@@ -868,12 +972,6 @@
                                     <field name="intitule"/>
                                     <field name="description"/>
                                     <field name="type"/>
-                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
-                                           readonly="1"/>
                                     <field name="responsable"/>
                                     <field name="seuil1"/>
                                     <field name="seuil2"/>
@@ -883,6 +981,12 @@
                                     <field name="date_debut"/>
                                     <field name="date_fin"/>
                                     <field name="delai"/>
+                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
+                                           readonly="1"/>
+                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
+                                           readonly="1"/>
                                 </group>
                             </group>
                             <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
@@ -985,7 +1089,6 @@
                         <field name="mesuresCorr"/>
                         <field name="o_type" invisible="1"/>
                         <field name="with_survenu" invisible="1"/>
-
                         <field name="risque_type" invisible="1"/>
                         <field name="os_id" string="Objectif Stratégique"
                                attrs="{'invisible': [('risque_type', '!=', 'risques_strategiques')]}"/>

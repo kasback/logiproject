@@ -9,8 +9,7 @@ class Op(models.Model):
     nom = fields.Char('Intitulé')
     responsable = fields.Many2one('res.partner')
     programme_id = fields.Many2one('men_projet.programme', string="Intitulé du programme")
-    os_id = fields.Many2one('men_projet.os', string="Intitulé de l'objectif stratégique")
-    programme_id_value = fields.Integer(compute="_get_programme_id")
+
     risques = fields.One2many('men_projet.risque', 'op_id')
     indicateurs = fields.One2many('men_projet.indicateur', 'op_id')
     indicateur_efficacite = fields.Float('Taux d\'éfficacité')
@@ -32,11 +31,17 @@ class Op(models.Model):
     equipe_operation = fields.Many2many('men_projet.ressource', string="Equipe opérationnelle")
     autres_participants = fields.Many2many('men_projet.autre_ressource', string="Autres Participants")
 
-    @api.onchange('os_id')
+    @api.model
     def _get_programme_id(self):
-        for op in self:
-            context = self._context
-            op.programme_id_value = context.get('programme_id')
+        res = {}
+        programme_id = self._context.get('programme_id')
+        res['domain'] = {'op': [('programme_id', '=', programme_id)]}
+        domain = res.get('domain')
+        if domain is not None:
+            return domain.get('op')
+
+    os_id = fields.Many2one('men_projet.os', string="Intitulé de l'objectif stratégique",
+                            domain=lambda self: self._get_programme_id())
 
     @api.model
     def create(self, vals):

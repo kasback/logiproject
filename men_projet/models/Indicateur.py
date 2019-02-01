@@ -109,11 +109,12 @@ class ValeursCible(models.Model):
     vc = fields.Float('Valeur cible')
     vr = fields.Float('Valeur réelle')
     date_cible = fields.Date('Date cible')
-    ecart = fields.Char('Écart', compute="_calc_ecart")
+    ecart = fields.Float('Écart', compute="_calc_ecart")
     t_r = fields.Char('Taux de réalisation', compute="_calc_taux_realisation")
     date_saisie = fields.Date('Date réelle')
     analyse = fields.Text()
     ajustement = fields.Text('Decision d\'ajustement')
+    set_color = fields.Char(compute='_set_field_color')
 
     @api.depends('vr')
     def _calc_ecart(self):
@@ -126,6 +127,15 @@ class ValeursCible(models.Model):
         for record in self:
             if record.ecart:
                 record.t_r = str(round((100 - ((float(record.ecart) / float(record.vc)) * 100)), 2)) + '%'
+
+    def _set_field_color(self):
+        for indi in self:
+            if indi.ecart < indi.seuil1:
+                indi.set_color = 'green'
+            elif indi.seuil1 < indi.ecart < indi.seuil2:
+                indi.set_color = 'yellow'
+            elif indi.ecart >= indi.seuil2:
+                indi.set_color = 'red'
 
 
 
