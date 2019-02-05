@@ -10,6 +10,7 @@ class Programme(models.Model):
     }
 
     sequence = fields.Char('Sequence', readonly=True)
+    code = fields.Char('Code')
     nom = fields.Char('Intitulé', required="True")
     responsable = fields.Many2one('res.partner')
     description = fields.Text('Description')
@@ -92,6 +93,9 @@ class Programme(models.Model):
     risques_op = fields.One2many('men_projet.risque', 'programme_id', domain=[('risque_type', '=', 'risques_projets')])
     risques_non_planif = fields.One2many('men_projet.risque_non_planif', 'programme_id', string='Risques non planifiés')
     indicateurs_suivi = fields.One2many('men_projet.indicateur', 'programme_id', store=True)
+
+
+
     os_global = fields.Many2one('men_projet.os_global')
     os_global_suivi = fields.Many2one('men_projet.os_global')
     os = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
@@ -107,20 +111,28 @@ class Programme(models.Model):
     @api.onchange('os_m2o')
     def _filter_ops(self):
         for programme in self:
-            if programme.os_m2o.id is not False:
-                programme.op = self.env['men_projet.op'].search([('os_id', '=', programme.op_m2o.id)])
-            else:
-                programme.op = self.env['men_projet.op'].search([('programme_id', '=', self._origin.id)])\
-
+            if programme.planif_status == 'objectifs_projets':
+                if programme.os_m2o.id is not False:
+                    programme.op = self.env['men_projet.op'].search([('os_id', '=', programme.os_m2o.id)])
+                else:
+                    programme.op = self.env['men_projet.op'].search([('programme_id', '=', self._origin.id)])
+            elif programme.planif_status == 'risques_strategiques':
+                if programme.os_m2o.id is not False:
+                    programme.risques = self.env['men_projet.risque'].search(
+                        ['&', ('os_id', '=', programme.os_m2o.id), ('risque_type', '=', 'risques_strategiques')])
+                else:
+                    programme.risques = self.env['men_projet.risque'].search(
+                        ['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_strategiques')])
 
     @api.onchange('op_m2o')
     def _filter_risques_op(self):
         for programme in self:
             if programme.op_m2o.id is not False:
-                programme.risques_op = self.env['men_projet.risque'].search(['&', ('op_id', '=', programme.op_m2o.id), ('risque_type', '=', 'risques_projets')])
+                programme.risques= self.env['men_projet.risque'].search(
+                    ['&', ('op_id', '=', programme.op_m2o.id), ('risque_type', '=', 'risques_projets')])
             else:
-                programme.risques_op = self.env['men_projet.risque'].search(['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_projets')])
-            print(programme.risques_op)
+                programme.risques = self.env['men_projet.risque'].search(
+                    ['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_projets')])
 
     @api.one
     def objectifs_strategiques_btn(self):
@@ -163,12 +175,14 @@ class Programme(models.Model):
         res = super(Programme, self).create(vals)
         seq = self.env['ir.sequence'].next_by_code('men_projet.programme') or '/'
         res['sequence'] = seq
+        res['os_global'].programme_id = res['id']
         res['os_global_suivi'] = res['os_global']
         return res
 
     @api.multi
     def write(self, vals):
         vals['objectif_type'] = 'all'
+
         if 'indicateurs_suivi' in vals:
             indicateurs = vals['indicateurs_suivi']
             for indicateur in indicateurs:
@@ -183,7 +197,6 @@ class Programme(models.Model):
             for risque in risques:
                 if risque[2] and risque[2] is not False and type(risque[2]) == dict:
                     survenues = risque[2]['survenues']
-                    print(survenues)
                     for survenu in survenues:
                         if survenu[2] is not False:
                             self.env['men_projet.risque'].search([('id', '=', risque[1])]).write({
@@ -192,14 +205,11 @@ class Programme(models.Model):
 
         if 'op' in vals:
             ops = vals['op']
-            print(ops)
             for op in ops:
                 if op[0] == 0:
-                    print('add fucntion')
                     op[2]['programme_id'] = self.id
                     self.env['men_projet.op'].create(op[2])
                 elif op[0] == 1:
-                    print('write fucntion')
                     if op[2] and op[2] is not False and type(op[2]) == dict:
                         elems_modified = op[2]
                         for key, value in elems_modified.items():
@@ -215,12 +225,31 @@ class Programme(models.Model):
                     print('delete fucntion : ' + str(op[1]))
                     # self.env['men_projet.op'].search([('id', '=', op[1])]).unlink()
 
+        if 'risques' in vals:
+            risques_op = vals['risques']
+            for risque_op in risques_op:
+                if risque_op[0] == 0:
+                    print('create function')
+                    risque_op[2]['programme_id'] = self.id
+                    self.env['men_projet.risque'].create(risque_op[2])
+                elif risque_op[0] == 1:
+                    elems_modified = risque_op[2]
+                    for key, value in elems_modified.items():
+                        self.env['men_projet.risque'].search([('id', '=', risque_op[1])]).write({
+                            key: value
+                        })
+                elif risque_op[0] == 2:
+                    print('delete fucntion : ' + str(risque_op[1]))
+                    # self.env['men_projet.op'].search([('id', '=', op[1])]).unlink()
+
         vals['indicateurs_suivi'] = self.env['men_projet.indicateur'].search([('programme_id', '=', self.id)])
         vals['risques_suivi'] = self.env['men_projet.risque'].search([('programme_id', '=', self.id)])
-        if 'os_m2o' in vals:
-            print(vals['os_m2o'])
         vals['op'] = self.env['men_projet.op'].search([('programme_id', '=', self.id)])
-        print(vals['op'])
+        vals['risques'] = self.env['men_projet.risque'].search([('programme_id', '=', self.id)])
+        if 'os_global' in vals:
+            new_osg = self.env['men_projet.os_global'].search([('id', '=', vals['os_global'])])
+            new_osg.programme_id = self.id
+            self.os_global_suivi = new_osg
         return super(Programme, self).write(vals)
 
 
@@ -229,6 +258,7 @@ class OsGlobal(models.Model):
     _rec_name = 'nom'
 
     sequence = fields.Char('Sequence', readonly=True)
+    code = fields.Char('Code')
     nom = fields.Char('Intitulé')
     responsable = fields.Many2one('res.partner')
     os = fields.One2many('men_projet.os', 'osg_id', string="Objéctifs stratégiques")
@@ -236,6 +266,7 @@ class OsGlobal(models.Model):
     indicateurs = fields.One2many('men_projet.indicateur', 'osg_id')
     indicateur_efficacite = fields.Float('Taux d\'éfficacité')
     description = fields.Text('Description')
+    programme_id = fields.Many2one('men_projet.programme')
 
     @api.model
     def create(self, vals):
@@ -243,4 +274,3 @@ class OsGlobal(models.Model):
         seq = self.env['ir.sequence'].next_by_code('men_projet.osg') or '/'
         record['sequence'] = seq
         return record
-

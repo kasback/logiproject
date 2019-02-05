@@ -6,7 +6,8 @@ class Indicateur(models.Model):
     _rec_name = 'intitule'
 
     sequence = fields.Char('Sequence', readonly=True)
-    intitule = fields.Char()
+    code = fields.Char('Code')
+    intitule = fields.Char('Intitulé')
     type = fields.Selection([('quantitatif', 'Quantitatif'),
                              ('qualitatif', 'Qualitatif'),
                              ('qualitatif_quantifiable', 'Qualitatif quantifiable'),
@@ -34,9 +35,9 @@ class Indicateur(models.Model):
     val_init = fields.Float('Valeur initiale')
     val_finale = fields.Float('Valeur finale')
     unite_mesure = fields.Many2one('uom.uom', 'Unité de mesure')
-    os_id = fields.Many2one('men_projet.os', string="Objectif Stratégique", domain=lambda self: self._set_objectifs_domain())
+    os_id = fields.Many2one('men_projet.os', string="Objectif Stratégique", default=lambda self: self.env['men_projet.os'].search([('id', '=', self._context.get('os_id'))]))
     osg_id = fields.Many2one('men_projet.os_global', string="Objectif Global")
-    op_id = fields.Many2one('men_projet.op', string="Objectif Projet", domain=lambda self: self._set_objectifs_domain())
+    op_id = fields.Many2one('men_projet.op', string="Objectif Projet", default=lambda self: self.env['men_projet.op'].search([('id', '=', self._context.get('op_id'))]))
     o_type = fields.Char()
     indicateur_parent = fields.Many2one('men_projet.indicateur', domain=lambda self: self._set_indicateur_parent_domain())
     indicateurs_lies = fields.One2many('men_projet.indicateur', 'indicateur_parent')
@@ -78,16 +79,18 @@ class Indicateur(models.Model):
         if res.get('domain'):
             return res.get('domain').get('indicateur_parent')
 
-    @api.onchange('os_id')
+    @api.one
     def _set_objectifs_domain(self):
         programme_id = self._context.get('programme_id')
         o_type = self._context.get('o_type')
-        res = {}
-        if o_type == 'os':
-            res['domain'] = {'os_id': [('programme_id', '=', programme_id)]}
-        elif o_type == 'op':
-            res['domain'] = {'op_id': [('programme_id', '=', programme_id)]}
-        return res
+        self.os_id = self.env['men_projet.os'].search([('id', '=', self._context.get('os_id'))])
+        print(self.os_id)
+        # res = {}
+        # if o_type == 'os':
+        #     res['domain'] = {'os_id': [('programme_id', '=', programme_id)]}
+        # elif o_type == 'op':
+        #     res['domain'] = {'op_id': [('programme_id', '=', programme_id)]}
+        # return res
 
 
 class SourceInformation(models.Model):
