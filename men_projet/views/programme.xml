@@ -42,7 +42,7 @@
                         <field name="description" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field string="Objectif global" name="os_global"
                                context="{'form_view_ref': 'men_projet.osg_form_m2o_wo_risques', 'programme_id':id, 'planif_status': planif_status}"
-                                attrs="{'invisible': [('planif_status', 'in', ['risques_projets','risques_strategiques','risques_globaux'])],
+                               attrs="{'invisible': [('planif_status', 'in', ['risques_projets','risques_strategiques','risques_globaux'])],
                                 'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field string="Objectifs stratégiques" name="os_none_edit"
                                context="{'form_view_ref':'men_projet.os_form_o2m', 'programme_id':id}"
@@ -130,7 +130,7 @@
                         <page string="Objectifs projets"
                               attrs="{'invisible':[('planif_status','!=','objectifs_projets')]}">
                             <group>
-                                <field name="os_m2o" readonly="0" widget="selection" domain="[('programme_id', '=', id)]"/>
+                                <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"/>
                                 <field string="Objectifs projets" name="op"
                                        context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op'}">
                                     <tree>
@@ -144,6 +144,8 @@
                         </page>
                         <page string="Risques"
                               attrs="{'invisible': [('planif_status', 'not in', ['risques_globaux','risques_strategiques','risques_projets'])]}">
+                            <group>
+                                <field name="op_m2o" readonly="0" domain="[('programme_id', '=', id)]"/>
                             <field name="risques"
                                    context="{'programme':id, 'objectif': planif_status, 'status': status}">
                                 <tree>
@@ -238,6 +240,8 @@
                                     </group>
                                 </form>
                             </field>
+                            </group>
+
                         </page>
                     </notebook>
 
@@ -292,10 +296,16 @@
                                             <field name="ajustement"/>
                                             <field name="seuil1" readonly="1" invisible="1"/>
                                             <field name="seuil2" readonly="1" invisible="1"/>
-                                            <field name="set_color" />
-                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'red')]}" style="color:#dc3545;"/>
-                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'green')]}" style="color:green;"/>
-                                            <button name="confirm" icon="fa-square" attrs="{'invisible' :[('set_color', '=', 'yellow')]}" style="color:yellow;"/>
+                                            <field name="set_color" invisible="1"/>
+                                            <button name="confirm" icon="fa-square"
+                                                    attrs="{'invisible' :[('set_color', '!=', 'red')]}"
+                                                    style="color:#dc3545;"/>
+                                            <button name="confirm" icon="fa-square"
+                                                    attrs="{'invisible' :[('set_color', '!=', 'green')]}"
+                                                    style="color:green;"/>
+                                            <button name="confirm" icon="fa-square"
+                                                    attrs="{'invisible' :[('set_color', '!=', 'yellow')]}"
+                                                    style="color:orange;"/>
                                         </tree>
                                         <form>
                                             <group>

@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Programme(models.Model):
     _name = 'men_projet.programme'
     _rec_name = 'nom'
+
     _defaluts = {
         'objectif_type': 'all',
     }
@@ -38,7 +39,6 @@ class Programme(models.Model):
         ('os', 'Objectifs stratégiques'),
         ('op', 'Objectifs projets')
     ], default='all', string="Filtrer par objectif")
-
 
     @api.multi
     def _set_risques_domain(self):
@@ -100,17 +100,27 @@ class Programme(models.Model):
     op = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
     op_none_edit = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
     op_suivi = fields.One2many('men_projet.op', 'programme_id', string="Objectifs Projets")
-    os_m2o = fields.Many2one(related='op.os_id')
+
+    os_m2o = fields.Many2one('men_projet.os', string="Filtrer par Objectif stratégique")
+    op_m2o = fields.Many2one('men_projet.op', string="Filtrer par Objectif projet")
 
     @api.onchange('os_m2o')
     def _filter_ops(self):
         for programme in self:
-            print(programme.id)
             if programme.os_m2o.id is not False:
-                programme.op = self.env['men_projet.op'].search([('os_id', '=', programme.os_m2o.id)])
+                programme.op = self.env['men_projet.op'].search([('os_id', '=', programme.op_m2o.id)])
             else:
-                programme.op = self.env['men_projet.op'].search([('programme_id', '=', self._origin.id)])
+                programme.op = self.env['men_projet.op'].search([('programme_id', '=', self._origin.id)])\
 
+
+    @api.onchange('op_m2o')
+    def _filter_risques_op(self):
+        for programme in self:
+            if programme.op_m2o.id is not False:
+                programme.risques_op = self.env['men_projet.risque'].search(['&', ('op_id', '=', programme.op_m2o.id), ('risque_type', '=', 'risques_projets')])
+            else:
+                programme.risques_op = self.env['men_projet.risque'].search(['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_projets')])
+            print(programme.risques_op)
 
     @api.one
     def objectifs_strategiques_btn(self):
@@ -182,26 +192,35 @@ class Programme(models.Model):
 
         if 'op' in vals:
             ops = vals['op']
-            # print(ops)
+            print(ops)
             for op in ops:
-                if op[2] and op[2] is not False and type(op[2]) == dict:
-                    elems_modified = op[2]
-                    # print(elems_modified)
-                    for key, value in elems_modified.items():
-                        if key != 'indicateurs':
-                            self.env['men_projet.op'].search([('id', '=', op[1])]).write({
-                                key: value
-                            })
-                        else:
-                            self.env['men_projet.op'].search([('id', '=', op[1])]).write({
-                                'indicateurs': elems_modified['indicateurs']
-                            })
-
+                if op[0] == 0:
+                    print('add fucntion')
+                    op[2]['programme_id'] = self.id
+                    self.env['men_projet.op'].create(op[2])
+                elif op[0] == 1:
+                    print('write fucntion')
+                    if op[2] and op[2] is not False and type(op[2]) == dict:
+                        elems_modified = op[2]
+                        for key, value in elems_modified.items():
+                            if key != 'indicateurs':
+                                self.env['men_projet.op'].search([('id', '=', op[1])]).write({
+                                    key: value
+                                })
+                            else:
+                                self.env['men_projet.op'].search([('id', '=', op[1])]).write({
+                                    'indicateurs': elems_modified['indicateurs']
+                                })
+                elif op[0] == 2:
+                    print('delete fucntion : ' + str(op[1]))
+                    # self.env['men_projet.op'].search([('id', '=', op[1])]).unlink()
 
         vals['indicateurs_suivi'] = self.env['men_projet.indicateur'].search([('programme_id', '=', self.id)])
         vals['risques_suivi'] = self.env['men_projet.risque'].search([('programme_id', '=', self.id)])
+        if 'os_m2o' in vals:
+            print(vals['os_m2o'])
         vals['op'] = self.env['men_projet.op'].search([('programme_id', '=', self.id)])
-
+        print(vals['op'])
         return super(Programme, self).write(vals)
 
 
