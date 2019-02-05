@@ -6,6 +6,7 @@ class Risque(models.Model):
     _rec_name = 'intitule'
 
     sequence = fields.Char('Sequence', readonly=True)
+    code = fields.Char('Code')
     intitule = fields.Char('Intitulé')
     description = fields.Text('Description')
     source = fields.Many2one('men_projet.sources_risque')

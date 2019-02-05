@@ -6,6 +6,7 @@ class Os(models.Model):
     _rec_name = "nom"
 
     sequence = fields.Char('Sequence', readonly=True)
+    code = fields.Char('Code')
     nom = fields.Char('Intitulé')
     responsable = fields.Many2one('res.partner')
     programme_id = fields.Many2one('men_projet.programme')

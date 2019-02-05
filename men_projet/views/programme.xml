@@ -36,14 +36,16 @@
                     </header>
                     <group attrs="{'invisible':[('status','!=','planification')]}">
                         <field name="sequence"/>
+                        <field name="code" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field name="nom" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field name="responsable" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field name="id" invisible="1"/>
                         <field name="description" attrs="{'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
                         <field string="Objectif global" name="os_global"
-                               context="{'form_view_ref': 'men_projet.osg_form_m2o_wo_risques', 'programme_id':id, 'planif_status': planif_status}"
+                               context="{'form_view_ref': 'men_projet.osg_form_m2o_wo_risques', 'programme_id':id, 'planif_status': planif_status, 'os_global': 'james'}"
                                attrs="{'invisible': [('planif_status', 'in', ['risques_projets','risques_strategiques','risques_globaux'])],
-                                'readonly':[('planif_status','!=','objectifs_globaux')]}"/>
+                                'readonly':[('planif_status','!=','objectifs_globaux')]}"
+                                domain="[('programme_id', '=', id)]"/>
                         <field string="Objectifs stratégiques" name="os_none_edit"
                                context="{'form_view_ref':'men_projet.os_form_o2m', 'programme_id':id}"
                                attrs="{'invisible': [('planif_status', 'in', ['objectifs_globaux','objectifs_strategiques','risques_projets','risques_strategiques','risques_globaux'])],
@@ -130,7 +132,8 @@
                         <page string="Objectifs projets"
                               attrs="{'invisible':[('planif_status','!=','objectifs_projets')]}">
                             <group>
-                                <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"/>
+                                <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"
+                                       attrs="{'invisible':[('planif_status', 'not in', ['objectifs_projets', 'risques_strategiques'])]}"/>
                                 <field string="Objectifs projets" name="op"
                                        context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op'}">
                                     <tree>
@@ -145,7 +148,10 @@
                         <page string="Risques"
                               attrs="{'invisible': [('planif_status', 'not in', ['risques_globaux','risques_strategiques','risques_projets'])]}">
                             <group>
-                                <field name="op_m2o" readonly="0" domain="[('programme_id', '=', id)]"/>
+                                <field name="op_m2o" readonly="0" domain="[('programme_id', '=', id)]"
+                                    attrs="{'invisible':[('planif_status', '!=', 'risques_projets')]}"/>
+                                <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"
+                                       attrs="{'invisible':[('planif_status', '!=', 'risques_strategiques')]}"/>
                             <field name="risques"
                                    context="{'programme':id, 'objectif': planif_status, 'status': status}">
                                 <tree>
@@ -684,10 +690,11 @@
             <form>
                 <group>
                     <field name="sequence"/>
+                    <field name="code"/>
                     <field name="nom"/>
                     <field name="description"/>
                     <field name="responsable"/>
-                    <field name="indicateurs">
+                    <field name="indicateurs" context="{'osg_id': id}">
                         <tree>
                             <field name="sequence"/>
                             <field name="intitule"/>
@@ -779,6 +786,7 @@
             <form>
                 <group>
                     <field name="sequence"/>
+                    <field name="code"/>
                     <field name="nom"/>
                     <field name="description"/>
                     <field name="responsable"/>
@@ -861,7 +869,6 @@
                             </group>
                         </form>
                     </field>
-                    <field name="os"/>
                 </group>
             </form>
         </field>
@@ -873,14 +880,14 @@
             <form>
                 <group>
                     <field name="sequence"/>
+                    <field name="code"/>
                     <field name="programme_id" invisible="1"/>
                     <field name="nom"/>
                     <field name="description"/>
                     <field name="responsable"/>
                     <field name="osg_id" invisible="1"/>
-                    <field name="op_ids"/>
                     <field name="indicateurs"
-                           context="{'form_view_ref': 'men_projet.os_form_o2m', 'programme_id':programme_id, 'o_type':'os'}">
+                           context="{'form_view_ref': 'men_projet.os_form_o2m', 'programme_id':programme_id, 'o_type':'os', 'os_id': id}">
                         <tree>
                             <field name="sequence"/>
                             <field name="intitule"/>
@@ -903,11 +910,10 @@
                                     <field name="date_debut"/>
                                     <field name="date_fin"/>
                                     <field name="delai"/>
-                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
+                                    <field name="os_id" readonly="1"/>
+                                    <field name="osg_id" invisible="1"
                                            readonly="1"/>
-                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
+                                    <field name="op_id" invisible="1"
                                            readonly="1"/>
                                 </group>
                             </group>
@@ -971,10 +977,11 @@
                 <group>
                     <field name="sequence"/>
                     <field name="programme_id" invisible="1"/>
+                    <field name="code"/>
                     <field name="nom"/>
                     <field name="responsable"/>
                     <field name="os_id" required="1" readonly="0"/>
-                    <field name="indicateurs">
+                    <field name="indicateurs" context="{'form_view_ref': 'men_projet.os_form_o2m', 'programme_id':programme_id, 'o_type':'os', 'op_id': id}">
                         <form>
                             <group cols="2">
                                 <group>
@@ -1084,6 +1091,7 @@
                 <group cols="2">
                     <group>
                         <field name="sequence"/>
+                        <field name="code"/>
                         <field name="intitule"/>
                         <field name="description"/>
                         <field name="source"/>
