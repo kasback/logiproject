@@ -32,17 +32,18 @@ class Op(models.Model):
     equipe_operation = fields.Many2many('men_projet.ressource', string="Equipe opérationnelle")
     autres_participants = fields.Many2many('men_projet.autre_ressource', string="Autres Participants")
 
-    @api.model
-    def _get_programme_id(self):
-        res = {}
-        programme_id = self._context.get('programme_id')
-        res['domain'] = {'op': [('programme_id', '=', programme_id)]}
-        domain = res.get('domain')
-        if domain is not None:
-            return domain.get('op')
+    # @api.model
+    # def _get_programme_id(self):
+    #     res = {}
+    #     print('op context : ' + str(self._context))
+    #     programme_id = self._context.get('programme_id')
+    #     res['domain'] = {'op': [('programme_id', '=', programme_id)]}
+    #     domain = res.get('domain')
+    #     if domain is not None:
+    #         return domain.get('op')
 
-    os_id = fields.Many2one('men_projet.os', string="Intitulé de l'objectif stratégique",
-                            domain=lambda self: self._get_programme_id())
+    os_id = fields.Many2one('men_projet.os', 'Objectif stratégique',
+                            default=lambda self: self.env['men_projet.os'].search([('id', '=', self._context.get('os_filter'))]))
 
     @api.model
     def create(self, vals):

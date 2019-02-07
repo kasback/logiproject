@@ -135,7 +135,7 @@
                                 <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"
                                        attrs="{'invisible':[('planif_status', 'not in', ['objectifs_projets', 'risques_strategiques'])]}"/>
                                 <field string="Objectifs projets" name="op"
-                                       context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op'}">
+                                       context="{'form_view_ref': 'men_projet.op_form_o2m', 'programme_id':id, 'o_type':'op', 'os_filter': os_m2o}">
                                     <tree>
                                         <field name="sequence"/>
                                         <field name="nom"/>
@@ -153,7 +153,7 @@
                                 <field name="os_m2o" readonly="0" domain="[('programme_id', '=', id)]"
                                        attrs="{'invisible':[('planif_status', '!=', 'risques_strategiques')]}"/>
                             <field name="risques"
-                                   context="{'programme':id, 'objectif': planif_status, 'status': status}">
+                                   context="{'programme':id, 'objectif': planif_status, 'status': status, 'os_filter': os_m2o, 'op_filter': op_m2o}">
                                 <tree>
                                     <field name="sequence"/>
                                     <field name="intitule"/>
@@ -180,13 +180,13 @@
                                             <field name="gravite"/>
                                             <field name="criticite"/>
                                             <field name="o_type" invisible="1"/>
+                                            <field name="risque_type" invisible="1"/>
                                             <field name="with_survenu" invisible="1"/>
-                                            <field name="os_id"
-                                                   attrs="{'invisible': [('o_type', '!=', 'risques_strategiques')]}"/>
+                                            <field name="os_id" attrs="{'invisible': [('risque_type', '!=', 'risques_strategiques')]}" domain="[('id', '=', context.get('os_m2o'))]" options="{'no_create': True, 'no_create_edit':True}"/>
                                             <field name="osg_id"
-                                                   attrs="{'invisible': [('o_type', '!=', 'risques_globaux')]}"/>
+                                                   attrs="{'invisible': [('risque_type', '!=', 'risques_globaux')]}"/>
                                             <field name="op_id"
-                                                   attrs="{'invisible': [('o_type', '!=', 'risques_projets')]}"/>
+                                                   attrs="{'invisible': [('risque_type', '!=', 'risques_projets')]}" domain="[('id', '=', context.get('op_m2o'))]" options="{'no_create': True, 'no_create_edit':True}"/>
                                         </group>
                                     </group>
                                     <group>
@@ -892,7 +892,7 @@
                             <field name="sequence"/>
                             <field name="intitule"/>
                             <field name="type"/>
-                            <field name="os_id" string="Objectif stratégique"/>
+                            <field name="os_id" string="Objectif stratégique" options="{'no_create': True, 'no_create_edit':True}"/>
                         </tree>
                         <form>
                             <group cols="2">
@@ -911,10 +911,6 @@
                                     <field name="date_fin"/>
                                     <field name="delai"/>
                                     <field name="os_id" readonly="1"/>
-                                    <field name="osg_id" invisible="1"
-                                           readonly="1"/>
-                                    <field name="op_id" invisible="1"
-                                           readonly="1"/>
                                 </group>
                             </group>
                             <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
@@ -938,7 +934,7 @@
                                 </group>
                             </group>
                             <group>
-                                <field name="indicateur_parent"/>
+                                <field name="indicateur_parent" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="indicateurs_lies" readonly="1"/>
                             </group>
                             <group>
@@ -980,7 +976,7 @@
                     <field name="code"/>
                     <field name="nom"/>
                     <field name="responsable"/>
-                    <field name="os_id" required="1" readonly="0"/>
+                    <field name="os_id" required="1" options="{'no_create': True, 'no_create_edit':True}" domain="[('id', '=', context.get('os_filter'))]" readonly="0"/>
                     <field name="indicateurs" context="{'form_view_ref': 'men_projet.os_form_o2m', 'programme_id':programme_id, 'o_type':'os', 'op_id': id}">
                         <form>
                             <group cols="2">
@@ -998,12 +994,7 @@
                                     <field name="date_debut"/>
                                     <field name="date_fin"/>
                                     <field name="delai"/>
-                                    <field name="os_id" attrs="{'invisible' : [('os_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="osg_id" attrs="{'invisible' : [('osg_id', '=', False)]}"
-                                           readonly="1"/>
-                                    <field name="op_id" attrs="{'invisible' : [('op_id', '=', False)]}"
-                                           readonly="1"/>
+                                    <field name="op_id" domain="[('id', '=', context.get('op_id'))]" options="{'no_create': True, 'no_create_edit':True}" />
                                 </group>
                             </group>
                             <group cols="2" attrs="{'invisible' : [('type', '!=', 'quantitatif')]}">
@@ -1027,7 +1018,7 @@
                                 </group>
                             </group>
                             <group>
-                                <field name="indicateur_parent"/>
+                                <field name="indicateur_parent" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="indicateurs_lies" readonly="1"/>
                             </group>
                             <group>

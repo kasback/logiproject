@@ -84,7 +84,6 @@ class Indicateur(models.Model):
         programme_id = self._context.get('programme_id')
         o_type = self._context.get('o_type')
         self.os_id = self.env['men_projet.os'].search([('id', '=', self._context.get('os_id'))])
-        print(self.os_id)
         # res = {}
         # if o_type == 'os':
         #     res['domain'] = {'os_id': [('programme_id', '=', programme_id)]}
