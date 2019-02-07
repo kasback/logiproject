@@ -94,8 +94,6 @@ class Programme(models.Model):
     risques_non_planif = fields.One2many('men_projet.risque_non_planif', 'programme_id', string='Risques non planifiés')
     indicateurs_suivi = fields.One2many('men_projet.indicateur', 'programme_id', store=True)
 
-
-
     os_global = fields.Many2one('men_projet.os_global')
     os_global_suivi = fields.Many2one('men_projet.os_global')
     os = fields.One2many('men_projet.os', 'programme_id', string="Objectifs Stratégiques")
@@ -133,6 +131,7 @@ class Programme(models.Model):
             else:
                 programme.risques = self.env['men_projet.risque'].search(
                     ['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_projets')])
+
 
     @api.one
     def objectifs_strategiques_btn(self):
@@ -226,22 +225,22 @@ class Programme(models.Model):
                     # self.env['men_projet.op'].search([('id', '=', op[1])]).unlink()
 
         if 'risques' in vals:
-            risques_op = vals['risques']
-            for risque_op in risques_op:
-                if risque_op[0] == 0:
+            risques = vals['risques']
+            for risque in risques:
+                if risque[0] == 0:
                     print('create function')
-                    risque_op[2]['programme_id'] = self.id
-                    self.env['men_projet.risque'].create(risque_op[2])
-                elif risque_op[0] == 1:
-                    elems_modified = risque_op[2]
+                    risque[2]['programme_id'] = self.id
+                    self.env['men_projet.risque'].create(risque[2])
+                elif risque[0] == 1:
+                    elems_modified = risque[2]
                     for key, value in elems_modified.items():
-                        self.env['men_projet.risque'].search([('id', '=', risque_op[1])]).write({
+                        self.env['men_projet.risque'].search([('id', '=', risque[1])]).write({
                             key: value
                         })
-                elif risque_op[0] == 2:
-                    print('delete fucntion : ' + str(risque_op[1]))
+                elif risque[0] == 2:
+                    print('delete fucntion : ' + str(risque[1]))
                     # self.env['men_projet.op'].search([('id', '=', op[1])]).unlink()
-
+        print('vals : ' + str(vals))
         vals['indicateurs_suivi'] = self.env['men_projet.indicateur'].search([('programme_id', '=', self.id)])
         vals['risques_suivi'] = self.env['men_projet.risque'].search([('programme_id', '=', self.id)])
         vals['op'] = self.env['men_projet.op'].search([('programme_id', '=', self.id)])

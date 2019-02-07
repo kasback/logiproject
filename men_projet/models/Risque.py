@@ -22,9 +22,9 @@ class Risque(models.Model):
     mesuresCorr = fields.One2many('men_projet.mesure', 'risque_id', string='Mesures Corréctives',
                                   domain=[('m_type', '=', 'mesure_corrective')])
     programme_id = fields.Many2one('men_projet.programme')
-    os_id = fields.Many2one('men_projet.os', 'Objectif stratégique')
+    os_id = fields.Many2one('men_projet.os', 'Objectif stratégique', default=lambda self: self.env['men_projet.os'].search([('id', '=', self._context.get('os_filter'))]))
     osg_id = fields.Many2one('men_projet.os_global', 'Objectif global')
-    op_id = fields.Many2one('men_projet.op', 'Objectif projet')
+    op_id = fields.Many2one('men_projet.op', 'Objectif projet', default=lambda self: self.env['men_projet.op'].search([('id', '=', self._context.get('op_filter'))]))
     o_type = fields.Char(compute="_get_type_o")
     risque_type = fields.Char()
     survenues = fields.One2many('men_projet.survenue', 'risque_id')
@@ -58,11 +58,9 @@ class Risque(models.Model):
                 res['domain'] = {'os_global': [('programme_id', '=', programme)]}
             elif objectif == 'risques_strategiques':
                 risque.o_type = 'risques_strategiques'
-                res['domain'] = {'os_id': [('programme_id', '=', programme)]}
                 risque.risque_type = risque.o_type
             elif objectif == 'risques_projets':
                 risque.o_type = 'risques_projets'
-                res['domain'] = {'op_id': [('programme_id', '=', programme)]}
                 risque.risque_type = risque.o_type
             return res
 
