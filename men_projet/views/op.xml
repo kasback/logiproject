@@ -195,8 +195,8 @@
                                                 <field name="echelle"/>
                                                 <field name="gravite"/>
                                                 <field name="criticite"/>
-                                                <field name="o_type" invisible="0"/>
-                                                <field name="risque_type" invisible="0"/>
+                                                <field name="o_type" invisible="1"/>
+                                                <field name="risque_type" invisible="1"/>
                                                 <field name="with_survenu" invisible="1"/>
                                                 <field name="oi_id"
                                                        attrs="{'invisible': [('risque_type', '!=', 'risques_oin')]}"
@@ -482,12 +482,12 @@
                                 <field name="nom"/>
                                 <field name="responsable"/>
                                 <field name="indicateur_efficacite"/>
-                                <field name="op_id" invisible="0"/>
+                                <field name="op_id" invisible="1"/>
                             </tree>
                             <form>
                                 <group>
                                     <field name="sequence"/>
-                                    <field name="op_id" invisible="0"/>
+                                    <field name="op_id" invisible="1"/>
                                     <field name="nom"/>
                                     <field name="description"/>
                                     <field name="responsable"/>
@@ -573,7 +573,7 @@
                                 <field name="nom"/>
                                 <field name="responsable"/>
                                 <field name="indicateur_efficacite"/>
-                                <field name="oi_id" invisible="0"/>
+                                <field name="oi_id" invisible="1"/>
                             </tree>
                             <form>
                                 <group>

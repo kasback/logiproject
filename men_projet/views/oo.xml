@@ -24,7 +24,7 @@
                         <field name="nom"/>
                         <field name="description"/>
                         <field name="responsable"/>
-                        <field name="op_id" invisible="0"/>
+                        <field name="op_id" invisible="1"/>
                         <field name="oi_id" invisible="0"/>
                     </group>
                     <group>
@@ -40,7 +40,7 @@
                                         <field name="intitule"/>
                                         <field name="description"/>
                                         <field name="type"/>
-                                        <field name="op_id" invisible="0"/>
+                                        <field name="op_id" invisible="1"/>
                                         <field name="responsable"/>
                                         <field name="seuil1"/>
                                         <field name="seuil2"/>
