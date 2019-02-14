@@ -21,5 +21,6 @@
     <menuitem name="Programmes" id="men_projet.menu_programmes" parent="men_projet.menu_root"/>
       <menuitem name="Liste" id="men_projet.menu_programme_list" parent="men_projet.menu_programmes"
                 action="men_projet.action_programme"/>
+    <menuitem name="Projets" id="men_projet.menu_projets" parent="men_projet.menu_root" action="men_projet.action_op"/>
   </data>
 </odoo>

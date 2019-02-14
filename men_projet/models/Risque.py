@@ -12,7 +12,7 @@ class Risque(models.Model):
     source = fields.Many2one('men_projet.sources_risque')
     echelle = fields.Selection([(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)], string="Echelle Probabilité en %")
     valeur = fields.Float('Valeur')
-    impacte = fields.Text('Description d\'impacte')
+    impacte = fields.Text('Description d\'impact')
     gravite = fields.Integer('Echelle gravité')
     criticite = fields.Integer(compute="_calc_criticite", string='Criticité')
     mesuresPre = fields.One2many('men_projet.mesure', 'risque_id', string='Mesures Préventives',
@@ -25,6 +25,9 @@ class Risque(models.Model):
     os_id = fields.Many2one('men_projet.os', 'Objectif stratégique', default=lambda self: self.env['men_projet.os'].search([('id', '=', self._context.get('os_filter'))]))
     osg_id = fields.Many2one('men_projet.os_global', 'Objectif global')
     op_id = fields.Many2one('men_projet.op', 'Objectif projet', default=lambda self: self.env['men_projet.op'].search([('id', '=', self._context.get('op_filter'))]))
+    oi_id = fields.Many2one('men_projet.oi', 'Livrables')
+    oo_id = fields.Many2one('men_projet.oo', 'Activités')
+    soo_id = fields.Many2one('men_projet.soo', 'Tâche')
     o_type = fields.Char(compute="_get_type_o")
     risque_type = fields.Char()
     survenues = fields.One2many('men_projet.survenue', 'risque_id')
@@ -61,6 +64,15 @@ class Risque(models.Model):
                 risque.risque_type = risque.o_type
             elif objectif == 'risques_projets':
                 risque.o_type = 'risques_projets'
+                risque.risque_type = risque.o_type
+            elif objectif == 'risques_oin':
+                risque.o_type = 'risques_oin'
+                risque.risque_type = risque.o_type
+            elif objectif == 'risques_oo':
+                risque.o_type = 'risques_oo'
+                risque.risque_type = risque.o_type
+            elif objectif == 'risques_soo':
+                risque.o_type = 'risques_soo'
                 risque.risque_type = risque.o_type
             return res
 
@@ -126,6 +138,7 @@ class RisqueNonPlanifie(models.Model):
     mesuresCorr = fields.One2many('men_projet.mesure', 'risque_nonplanif_id', string='Mesures Corréctives',
                                   domain=[('m_type', '=', 'mesure_corrective')])
     programme_id = fields.Many2one('men_projet.programme')
+    op_id = fields.Many2one('men_projet.op')
     date_survenu = fields.Date('Date d\'occurrence')
 
 

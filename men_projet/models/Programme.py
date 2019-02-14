@@ -46,6 +46,7 @@ class Programme(models.Model):
         res = {}
         for programme in self:
             if programme.status == 'planification':
+                print(programme.planif_status)
                 res['domain'] = {'risques': [('risque_type', '=', programme.planif_status)]}
             elif programme.status == 'suivi':
                 res['domain'] = {'risques': [('programme_id', '=', programme.id)]}
@@ -131,7 +132,6 @@ class Programme(models.Model):
             else:
                 programme.risques = self.env['men_projet.risque'].search(
                     ['&', ('programme_id', '=', self._origin.id), ('risque_type', '=', 'risques_projets')])
-
 
     @api.one
     def objectifs_strategiques_btn(self):

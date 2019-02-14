@@ -38,6 +38,9 @@ class Indicateur(models.Model):
     os_id = fields.Many2one('men_projet.os', string="Objectif Stratégique", default=lambda self: self.env['men_projet.os'].search([('id', '=', self._context.get('os_id'))]))
     osg_id = fields.Many2one('men_projet.os_global', string="Objectif Global")
     op_id = fields.Many2one('men_projet.op', string="Objectif Projet", default=lambda self: self.env['men_projet.op'].search([('id', '=', self._context.get('op_id'))]))
+    oi_id = fields.Many2one('men_projet.oi', string="Objectif Intérmédiaire")
+    oo_id = fields.Many2one('men_projet.oo', 'Activités')
+    soo_id = fields.Many2one('men_projet.soo', 'Tâche')
     o_type = fields.Char()
     indicateur_parent = fields.Many2one('men_projet.indicateur', domain=lambda self: self._set_indicateur_parent_domain())
     indicateurs_lies = fields.One2many('men_projet.indicateur', 'indicateur_parent')
@@ -63,6 +66,15 @@ class Indicateur(models.Model):
         if record.op_id:
             programme_id = self.env['men_projet.op'].search([('id', '=', record.op_id.id)]).programme_id
             record['o_type'] = 'op'
+        if record.oi_id:
+            record['op_id'] = vals.get('op_id')
+            record['o_type'] = 'oi'
+        if record.oo_id:
+            record['op_id'] = vals.get('op_id')
+            record['o_type'] = 'oo'
+        if record.soo_id:
+            record['op_id'] = vals.get('op_id')
+            record['o_type'] = 'soo'
         record['programme_id'] = programme_id
         seq = self.env['ir.sequence'].next_by_code('men_projet.indicateur') or '/'
         record['sequence'] = seq
@@ -71,11 +83,18 @@ class Indicateur(models.Model):
     def _set_indicateur_parent_domain(self):
         programme_id = self._context.get('programme_id')
         o_type = self._context.get('o_type')
+
         res = {}
         if o_type == 'os':
             res['domain'] = {'indicateur_parent': ['&', ('programme_id', '=', programme_id), ('o_type', '=', 'osg')]}
         elif o_type == 'op':
             res['domain'] = {'indicateur_parent': ['&', ('programme_id', '=', programme_id), ('o_type', '=', 'os')]}
+        elif o_type == 'oi':
+            res['domain'] = {'indicateur_parent': ['&', ('op_id', '=', self._context.get('op_id')), ('o_type', '=', 'op')]}
+        elif o_type == 'oo':
+            res['domain'] = {'indicateur_parent': ['&', ('op_id', '=', self._context.get('op_id')), ('o_type', '=', 'oi')]}
+        elif o_type == 'soo':
+            res['domain'] = {'indicateur_parent': ['&', ('op_id', '=', self._context.get('op_id')), ('o_type', '=', 'oo')]}
         if res.get('domain'):
             return res.get('domain').get('indicateur_parent')
 

@@ -1,1 +1,1 @@
-from . import models, Programme, Os, Op, Risque, Indicateur
+from . import models, Programme, Os, Op, Risque, Indicateur, Oi, Oo, Soo

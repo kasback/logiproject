@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="men_projet.pp">
+            <field name="name">Liste des parties prenantes</field>
+            <field name="model">men_projet.pp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nom"/>
+                    <field name="interet"/>
+                    <field name="role"/>
+                    <field name="impact"/>
+                    <field name="influence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="men_projet.pp_form">
+            <field name="name">Partie Prenante</field>
+            <field name="model">men_projet.pp</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group cols="2">
+                        <group>
+                            <field name="nom"/>
+                            <field name="description"/>
+                            <field name="interet"/>
+                            <field name="role"/>
+                        </group>
+                        <group>
+                            <field name="impact"/>
+                            <field name="influence"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="besoins">
+                            <tree editable="bottom">
+                                <field name="nom"/>
+                            </tree>
+                        </field>
+                        <field name="risques">
+                            <tree editable="bottom">
+                                <field name="nom"/>
+                            </tree>
+                        </field>
+                        <field name="engagements">
+                            <tree editable="bottom">
+                                <field name="nom"/>
+                            </tree>
+                        </field>
+                        <field name="relations">
+                            <tree editable="bottom">
+                                <field name="nom"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="men_projet.pp">
+            <field name="name">Partie Prenante</field>
+            <field name="res_model">men_projet.pp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
