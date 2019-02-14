@@ -23,7 +23,7 @@
                         <field name="nom"/>
                         <field name="description"/>
                         <field name="responsable"/>
-                        <field name="op_id" invisible="0"/>
+                        <field name="op_id" invisible="1"/>
                         <field name="oo_id" invisible="0"/>
                     </group>
                     <group>
@@ -31,7 +31,7 @@
                             <tree>
                                 <field name="intitule"/>
                                 <field name="type"/>
-                                <field name="op_id" invisible="0"/>
+                                <field name="op_id" invisible="1"/>
                                 <field name="responsable"/>
                             </tree>
                             <form>
