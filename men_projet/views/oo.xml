@@ -76,7 +76,19 @@
                                             <field name="date_cible" string="Date Cible"/>
                                         </tree>
                                     </field>
-                                    <field name="si"/>
+                                    <field name="si" string="Sources d'informations">
+                                        <tree>
+                                            <field name="intitule"/>
+                                            <field name="responsable"/>
+                                        </tree>
+                                        <form>
+                                        <group>
+                                            <field name="intitule"/>
+                                            <field name="responsable"/>
+                                            <field name="description"/>
+                                        </group>
+                                        </form>
+                                    </field>
                                 </group>
                             </form>
                         </field>
@@ -93,10 +105,10 @@
     </data>
 
     <data noupdate="1">
-        <record id="seq_men_projet_os" model="ir.sequence">
-            <field name="name">os_sequencer</field>
-            <field name="code">men_projet.os</field>
-            <field name="prefix">OS</field>
+        <record id="seq_men_projet_oo" model="ir.sequence">
+            <field name="name">oo_sequencer</field>
+            <field name="code">men_projet.oo</field>
+            <field name="prefix">OO</field>
             <field name="padding">5</field>
         </record>
     </data>

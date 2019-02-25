@@ -168,13 +168,14 @@ class AutreRessource(models.Model):
     p_o = fields.Char('Poste Occupé')
     nbr_exp = fields.Integer('Nombre d\'années d\'éxpérience')
     comp_cle = fields.Char('Compétences Clefs')
-    op_id = fields.Many2many('men_projet.op')
+    op_id = fields.Many2many('men_projet.op', string="Objectif Projet")
 
 
 class PartiePrenante(models.Model):
     _name = "men_projet.pp"
     _rec_name = 'nom'
 
+    sequence = fields.Char('Sequence', readonly=True)
     nom = fields.Char('Nom')
     description = fields.Text('Description')
     interet = fields.Char('intérêt')
