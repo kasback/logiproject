@@ -83,7 +83,6 @@ class Indicateur(models.Model):
     def _set_indicateur_parent_domain(self):
         programme_id = self._context.get('programme_id')
         o_type = self._context.get('o_type')
-
         res = {}
         if o_type == 'os':
             res['domain'] = {'indicateur_parent': ['&', ('programme_id', '=', programme_id), ('o_type', '=', 'osg')]}
@@ -96,6 +95,7 @@ class Indicateur(models.Model):
         elif o_type == 'soo':
             res['domain'] = {'indicateur_parent': ['&', ('op_id', '=', self._context.get('op_id')), ('o_type', '=', 'oo')]}
         if res.get('domain'):
+            print('inside if' + str(res['domain']))
             return res.get('domain').get('indicateur_parent')
 
     @api.one

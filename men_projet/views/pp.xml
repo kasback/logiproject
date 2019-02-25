@@ -57,6 +57,17 @@
             </field>
         </record>
 
+
+        <data noupdate="1">
+            <record id="seq_men_projet_pp" model="ir.sequence">
+                <field name="name">pp_sequencer</field>
+                <field name="code">men_projet.pp</field>
+                <field name="prefix">PP</field>
+                <field name="padding">5</field>
+            </record>
+        </data>
+
+
         <record model="ir.actions.act_window" id="men_projet.pp">
             <field name="name">Partie Prenante</field>
             <field name="res_model">men_projet.pp</field>

@@ -66,7 +66,8 @@
                                     </group>
                                 </group>
                                 <group>
-                                    <field name="indicateur_parent" options="{'no_create': True, 'no_create_edit':True}"/>
+                                    <field name="indicateur_parent"
+                                           options="{'no_create': True, 'no_create_edit':True}"/>
                                     <field name="indicateurs_lies" readonly="1"/>
                                 </group>
                                 <group>
@@ -76,14 +77,27 @@
                                             <field name="date_cible" string="Date Cible"/>
                                         </tree>
                                     </field>
-                                    <field name="si"/>
+                                    <field name="si" string="Sources d'informations">
+                                        <tree>
+                                            <field name="intitule"/>
+                                            <field name="responsable"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="intitule"/>
+                                                <field name="responsable"/>
+                                                <field name="description"/>
+                                            </group>
+                                        </form>
+                                    </field>
                                 </group>
                             </form>
                         </field>
                     </group>
                 </form>
             </field>
-        </record>-->
+        </record>
+        -->
 
         <record model="ir.actions.act_window" id="men_projet.action_soo">
             <field name="name">Tâche</field>
@@ -93,10 +107,10 @@
     </data>
 
     <data noupdate="1">
-        <record id="seq_men_projet_os" model="ir.sequence">
-            <field name="name">os_sequencer</field>
-            <field name="code">men_projet.os</field>
-            <field name="prefix">OS</field>
+        <record id="seq_men_projet_soo" model="ir.sequence">
+            <field name="name">soo_sequencer</field>
+            <field name="code">men_projet.soo</field>
+            <field name="prefix">SOO</field>
             <field name="padding">5</field>
         </record>
     </data>
