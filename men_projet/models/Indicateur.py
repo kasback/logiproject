@@ -5,6 +5,8 @@ class Indicateur(models.Model):
     _name = 'men_projet.indicateur'
     _rec_name = 'intitule'
 
+    # indicateur model
+
     sequence = fields.Char('Sequence', readonly=True)
     code = fields.Char('Code')
     intitule = fields.Char('Intitulé')
